@@ -6,6 +6,12 @@ const createRecipe = async (name, ingredients, preparation, userId) => {
   return { recipe: { ...newRecipe.ops[0], userId } };
 };
 
+const getAllRecipes = async () => {
+  const db = await getConnection();
+  return db.collection('recipes').find().toArray();
+};
+
 module.exports = {
   createRecipe,
+  getAllRecipes,
 };
