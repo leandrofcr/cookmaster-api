@@ -4,6 +4,7 @@ const {
     INTERNAL_SERVER_ERROR,
     CREATED,
     OK,
+    NOT_FOUND,
 } } = require('http-status-codes');
 
 const recipesService = require('../services/recipesService');
@@ -36,7 +37,22 @@ const getAllRecipes = async (_req, res) => {
   }
 };
 
+const findRecipeById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const recipe = await recipesService.findRecipeById(id);
+
+    if (recipe.message) return res.status(NOT_FOUND).json(recipe);
+
+    return res.status(OK).json(recipe);
+  } catch (err) {
+    console.log(err.message);
+    return res.status(INTERNAL_SERVER_ERROR).json(INTERNAL_SERVER_ERROR_MSG);
+  }
+};
+
 module.exports = {
   createRecipe,
   getAllRecipes,
+  findRecipeById,
 };

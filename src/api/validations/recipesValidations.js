@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb');
+
 const errors = {
   invalidEntries: 'Invalid entries. Try again.',
 };
@@ -7,6 +9,9 @@ const checkRecipeEntries = (name, ingred, prep) => {
   return {};
 };
 
+const checkId = async (id) => ObjectId.isValid(id);
+
 module.exports = {
   checkRecipeEntries,
+  checkId,
 };
