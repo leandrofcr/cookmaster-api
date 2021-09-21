@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const { StatusCodes: { UNAUTHORIZED, OK, INTERNAL_SERVER_ERROR } } = require('http-status-codes');
+const { UNAUTHORIZED, OK, INTERNAL_SERVER_ERROR } = require('http-status');
 
 const loginService = require('../services/loginService');
 // 

@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const { StatusCodes: { UNAUTHORIZED, NOT_FOUND } } = require('http-status-codes');
+const { UNAUTHORIZED, NOT_FOUND } = require('http-status');
 const usersModel = require('../models/usersModel');
 
 const secret = process.env.SECRET || 'notSoSecret';

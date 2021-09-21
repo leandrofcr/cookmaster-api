@@ -1,11 +1,4 @@
-const { 
-  StatusCodes: {
-    BAD_REQUEST,
-    INTERNAL_SERVER_ERROR,
-    CREATED,
-    OK,
-    NOT_FOUND,
-} } = require('http-status-codes');
+const { BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED, OK, NOT_FOUND } = require('http-status');
 
 const recipesService = require('../services/recipesService');
 

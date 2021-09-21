@@ -1,10 +1,4 @@
-const { 
-  StatusCodes: {
-    BAD_REQUEST,
-    CREATED,
-    CONFLICT,
-    INTERNAL_SERVER_ERROR,
-} } = require('http-status-codes');
+const { BAD_REQUEST, CREATED, CONFLICT, INTERNAL_SERVER_ERROR } = require('http-status');
 
 const usersService = require('../services/usersService');
 
