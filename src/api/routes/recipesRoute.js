@@ -5,6 +5,7 @@ const {
   getAllRecipes,
   findRecipeById,
   editRecipe,
+  removeRecipe,
 } = require('../controllers/recipesController');
 
 const router = express.Router();
@@ -21,6 +22,10 @@ router.route('/:id')
     .put(
       validateJWT,
       editRecipe,
+    )
+    .delete(
+      validateJWT,
+      removeRecipe,
     );
 
   module.exports = router;

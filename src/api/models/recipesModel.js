@@ -22,7 +22,7 @@ const findRecipeById = async (id) => {
 const editRecipe = async ([name, ingredients, preparation, recipeId], [userId, role]) => {
   const db = await getConnection();
   const recipe = await findRecipeById(recipeId);
-  
+
 // recipe can only be updated if it belongs to the logged in user or if that user is an administrator.
   if (role === 'admin' || recipe.userId.toString() === userId.toString()) { 
     const updatedRecipe = await db.collection('recipes').findOneAndUpdate(
@@ -36,9 +36,20 @@ const editRecipe = async ([name, ingredients, preparation, recipeId], [userId, r
   return { accessError: true };
 };
 
+const removeRecipe = async (recipeId, userId, role) => {
+  const db = await getConnection();
+  const recipe = await findRecipeById(recipeId);
+
+  if (role === 'admin' || recipe.userId.toString() === userId.toString()) { 
+    await db.collection('recipes').findOneAndDelete({ _id: ObjectId(recipeId) });
+  }
+  return { accessError: true };
+};
+
 module.exports = {
   createRecipe,
   getAllRecipes,
   findRecipeById,
   editRecipe,
+  removeRecipe,
 };

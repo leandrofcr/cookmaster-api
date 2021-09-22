@@ -31,9 +31,17 @@ const editRecipe = async ([name, ingred, prep, recipeId], [userId, role]) => {
     return recipe;
 };
 
+const removeRecipe = async (recipeId, userId, role) => {
+  const removedRecipe = recipesModel.removeRecipe(recipeId, userId, role);
+  if (removedRecipe.accessError) return { message: errors.accessDenied };
+
+  return {};
+};
+
 module.exports = {
   createRecipe,
   getAllRecipes,
   findRecipeById,
   editRecipe,
+  removeRecipe,
 };

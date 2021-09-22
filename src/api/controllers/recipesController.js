@@ -5,6 +5,7 @@ const {
   OK,
   NOT_FOUND,
   UNAUTHORIZED,
+  NO_CONTENT,
 } = require('http-status');
 
 const recipesService = require('../services/recipesService');
@@ -70,9 +71,26 @@ const editRecipe = async (req, res) => {
   }
 };
 
+const removeRecipe = async (req, res) => {
+  try {
+    const { id: recipeId } = req.params;
+    const { _id: userId, role } = req.user;
+
+    const removedRecipe = await recipesService.removeRecipe(recipeId, userId, role);
+
+    if (removedRecipe.message) return res.status(UNAUTHORIZED).json(removedRecipe);
+
+    return res.status(NO_CONTENT).json();
+  } catch (err) {
+    console.log(err.message);
+    return res.status(INTERNAL_SERVER_ERROR).json(INTERNAL_SERVER_ERROR_MSG);
+  }
+};
+
 module.exports = {
   createRecipe,
   getAllRecipes,
   findRecipeById,
   editRecipe,
+  removeRecipe,
 };
