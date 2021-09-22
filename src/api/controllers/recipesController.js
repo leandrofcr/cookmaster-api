@@ -87,10 +87,22 @@ const removeRecipe = async (req, res) => {
   }
 };
 
+const addImage = async (req, res) => {
+  const { path } = req.file;
+  const { id: recipeId } = req.params;
+  const { _id: userId, role } = req.user;
+
+  const recipe = await recipesService.addImage(recipeId, userId, path, role);
+  if (recipe.message) return res.status(UNAUTHORIZED).json(recipe);
+
+  return res.status(OK).json(recipe);
+};
+
 module.exports = {
   createRecipe,
   getAllRecipes,
   findRecipeById,
   editRecipe,
   removeRecipe,
+  addImage,
 };
