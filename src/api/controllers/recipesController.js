@@ -1,4 +1,11 @@
-const { BAD_REQUEST, INTERNAL_SERVER_ERROR, CREATED, OK, NOT_FOUND } = require('http-status');
+const {
+  BAD_REQUEST,
+  INTERNAL_SERVER_ERROR,
+  CREATED,
+  OK,
+  NOT_FOUND,
+  UNAUTHORIZED,
+} = require('http-status');
 
 const recipesService = require('../services/recipesService');
 
@@ -44,8 +51,28 @@ const findRecipeById = async (req, res) => {
   }
 };
 
+const editRecipe = async (req, res) => {
+  try {
+    const { name, ingredients, preparation } = req.body;
+    const { _id: userId, role } = req.user;
+    const { id: recipeId } = req.params;
+    
+    const recipe = await recipesService.editRecipe(
+      [name, ingredients, preparation, recipeId],
+      [userId, role],
+    );
+    if (recipe.message) return res.status(UNAUTHORIZED).json(recipe);
+
+    return res.status(OK).json(recipe);
+  } catch (err) {
+    console.log(err.message);
+    return res.status(INTERNAL_SERVER_ERROR).json(INTERNAL_SERVER_ERROR_MSG);
+  }
+};
+
 module.exports = {
   createRecipe,
   getAllRecipes,
   findRecipeById,
+  editRecipe,
 };
