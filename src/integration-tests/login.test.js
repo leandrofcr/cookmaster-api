@@ -37,7 +37,7 @@ describe('POST /login', () => {
       expect(response.body).to.have.a.property('message');
     })
 
-    it('the "message" property has a suitable error "message"', () => {
+    it('the "message" property has a suitable error message', () => {
       expect(response.body.message).to.be.equal('All fields must be filled');
     })
   });
