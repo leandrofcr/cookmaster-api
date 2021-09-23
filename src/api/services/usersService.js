@@ -11,6 +11,13 @@ const createUser = async (name, email, password) => {
   return usersModel.createUser(name, email, password);
 };
 
+const addAdmin = async (name, email, password, role) => {
+  if (role !== 'admin') return { message: 'Only admins can register new admins' };
+
+  return usersModel.createUser(name, email, password, role);
+};
+ 
 module.exports = {
   createUser,
+  addAdmin,
 };

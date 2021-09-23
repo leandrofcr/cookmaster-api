@@ -6,13 +6,13 @@ const checkExistence = async (email) => {
   return wasFound !== null;
 };
 
-const createUser = async (name, email, password) => {
+const createUser = async (name, email, password, role) => {
   const db = await getConnection();
   const createdUser = await db.collection('users').insertOne(
     { name, email, password, role: 'user' },
   );
   
-  return { user: { _id: createdUser.insertedId, name, email, role: 'user' } };
+  return { user: { _id: createdUser.insertedId, name, email, role: role || 'user' } };
 };
 
 const findUser = async (email) => {
