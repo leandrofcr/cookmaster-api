@@ -28,6 +28,12 @@ const validUser = {
   password: 'youshallnotpass'
 };
 
+const invalidEmail = {
+  name: 'Gandalf',
+  email: 'gandalf@',
+  password: 'youshallnotpass'
+};
+
 
 describe('POST /users', () => {
   describe('when "name", "email", "password" are not entered ', () => {
@@ -35,6 +41,31 @@ describe('POST /users', () => {
 
     before(async () => {
       response = await chai.request(app).post('/users').send({})
+    })
+
+    it('returns HTTP status 400', () => {
+      expect(response).to.have.status(400);
+    });
+
+    it('return an object in the body', () => {
+      expect(response.body).to.be.an('object');
+    });
+
+    it('this object has a property called message', () => {
+      expect(response.body).to.have.a.property('message');
+    });
+
+    it('the "message" property has a suitable error message ', () => {
+      expect(response.body.message).to.be.equal('Invalid entries. Try again.');
+    });
+
+  });
+
+  describe('when an invalid email is entered', () => {
+    let response;
+
+    before(async () => {
+      response = await chai.request(app).post('/users').send(invalidEmail)
     })
 
     it('returns HTTP status 400', () => {
