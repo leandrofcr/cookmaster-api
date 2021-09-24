@@ -21,7 +21,7 @@ const checkEmailFormat = (email) => {
 const verifyLoginData = async (email, password) => {
   const response = await loginModel.checkLogin(email, password);
   if (response.loginError) return { message: errors.incorrectEntries };
-  return {};
+  return response;
 };
 
 module.exports = {

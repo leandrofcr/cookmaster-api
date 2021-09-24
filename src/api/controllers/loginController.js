@@ -21,6 +21,7 @@ const checkLogin = async (req, res) => {
     
     const { _id, role } = result;
     const payload = { _id, email, role };
+    
     const token = jwt.sign(payload, secret, jwtConfig);
     
     return res.status(OK).json({ token });
