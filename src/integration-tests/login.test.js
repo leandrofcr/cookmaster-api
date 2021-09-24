@@ -18,7 +18,7 @@ const expectedUser = {
 
 
 describe('POST /login', () => {
-  describe('when username and password are not entered', ()=> {
+  describe('when username and password are not entered', () => {
     let response;
 
     before(async () => {
@@ -42,7 +42,7 @@ describe('POST /login', () => {
     })
   });
 
-  describe('when the user does not exist in the database or incorrect', ()=> {
+  describe('when the user does not exist in the database or incorrect', () => {
     let connectionMock;
     let response;
 
@@ -76,7 +76,7 @@ describe('POST /login', () => {
     })
   });
 
-  describe('when login is successful', ()=> {
+  describe('when login is successful', () => {
     let connectionMock;
     let response;
 
@@ -109,5 +109,4 @@ describe('POST /login', () => {
 
     })
   });
-  
 });
