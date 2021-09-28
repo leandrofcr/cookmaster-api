@@ -40,7 +40,7 @@ In this project, the following skills were worked:
 - `npm install`
 
 
-** Important notes:**
+**Important notes:**
 
 - Local testing depends on the API running (use `npm run dev` to facilitate the process);
 
