@@ -27,7 +27,7 @@ In this project, the following skills were worked:
 
 ---
 
-# Clone Project Instructions
+## Clone Project Instructions
 
 1. Clone the repository
 
