@@ -32,7 +32,7 @@ const editRecipe = async ([name, ingred, prep, recipeId], [userId, role]) => {
 };
 
 const removeRecipe = async (recipeId, userId, role) => {
-  const removedRecipe = recipesModel.removeRecipe(recipeId, userId, role);
+  const removedRecipe = await recipesModel.removeRecipe(recipeId, userId, role);
   if (removedRecipe.accessError) return { message: errors.accessDenied };
 
   return {};

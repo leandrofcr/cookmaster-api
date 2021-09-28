@@ -39,9 +39,10 @@ const editRecipe = async ([name, ingredients, preparation, recipeId], [userId, r
 const removeRecipe = async (recipeId, userId, role) => {
   const db = await getConnection();
   const recipe = await findRecipeById(recipeId);
-
+  
   if (role === 'admin' || recipe.userId.toString() === userId.toString()) { 
     await db.collection('recipes').findOneAndDelete({ _id: ObjectId(recipeId) });
+    return {};
   }
   return { accessError: true };
 };
