@@ -1,4 +1,4 @@
-## Welcome to the Cookmaster API project repository!
+# Welcome to the Cookmaster API project repository!
 
 
 ## What was developed
@@ -7,7 +7,7 @@
 This project aims to deliver an API where it is possible to register and login users, where only these people can access, modify and delete the recipes they have registered.
 
 
-# Skills
+## Skills
 
 In this project, the following skills were worked:
 
