@@ -39,7 +39,7 @@ const removeRecipe = async (recipeId, userId, role) => {
 };
 
 const addImage = async (recipeId, userId, path, role) => {
-  const recipe = recipesModel.addImage(recipeId, userId, path, role);
+  const recipe = await recipesModel.addImage(recipeId, userId, path, role);
   if (recipe.accessError) return { message: errors.accessDenied };
 
   return recipe;
